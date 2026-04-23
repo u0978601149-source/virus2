@@ -1,0 +1,24 @@
+import webbrowser
+import keyboard
+import time
+
+# 1. Iš pradžių paklausiame laiko (kol klaviatūra dar veikia)
+trukme = int(input("Įveskite, kiek sekundžių blokuoti: "))
+
+# 2. Palaukiame 5 sekundes, kad spėtumėte pasiruošti
+print("Pradedama po 5 sekundžių...")
+time.sleep(5)
+
+# 3. Blokuojame klavišus
+keys = ['windows', 'alt', 'ctrl', 'esc']
+for k in keys:
+    keyboard.block_key(k)
+
+# 4. Atidaro 11 langų
+url = "https://www.jotform.com/app/260866935822367?utm_source=jotform_pwa"
+for i in range(11):
+    webbrowser.open(url)
+    time.sleep(0.1)
+
+# 5. Programa laukia tiek, kiek nurodėte pradžioje
+time.sleep(trukme)
